@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ServerDepth Events</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       BANNER — slides down from top on new event
+  ═══════════════════════════════════════════════ -->
+  <div id="sd-banner" class="sd-banner hidden" role="alert" aria-live="assertive">
+    <div class="sd-banner__icon-wrap">
+      <svg class="sd-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <div class="sd-banner__body">
+      <span class="sd-banner__tag" id="banner-type">CARGO DROP</span>
+      <p class="sd-banner__title" id="banner-label">New World Event</p>
+      <p class="sd-banner__sub" id="banner-sub">Check your map for details</p>
+    </div>
+    <div class="sd-banner__progress">
+      <div class="sd-banner__progress-bar" id="banner-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL — toggled with F8
+  ═══════════════════════════════════════════════ -->
+  <div id="sd-panel" class="sd-panel hidden" role="dialog" aria-modal="true" aria-label="Active Events">
+    <div class="sd-panel__header">
+      <div class="sd-panel__header-left">
+        <svg class="sd-panel__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="sd-panel__title">World Events</span>
+      </div>
+      <div class="sd-panel__header-right">
+        <button class="sd-panel__btn-icon" id="btn-refresh" title="Refresh list">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </button>
+        <button class="sd-panel__btn-icon" id="btn-close" title="Close (ESC)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="sd-panel__body">
+      <!-- Empty state -->
+      <div id="sd-empty-state" class="sd-empty">
+        <svg class="sd-empty__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+        </svg>
+        <p>No active events right now.</p>
+        <span>Events fire automatically on a schedule,<br>or can be triggered by admins.</span>
+      </div>
+
+      <!-- Event cards injected here by app.js -->
+      <div id="sd-events-list" class="sd-events-list"></div>
+    </div>
+
+    <div class="sd-panel__footer">
+      <span>Press <kbd>F8</kbd> or <kbd>ESC</kbd> to close</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
